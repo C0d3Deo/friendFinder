@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>SweetMate.com</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="assets/css/reset.css">
+        <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+        
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+        <!-- Optional theme -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+         <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+         <script src="./plasm-simplemodal/source/MooTools-Core-1.6.0.js"></script>
+         <script src="./plasm-simplemodal/source/simple-modal.js"></script>
+    </head>
+
+    <body>
+        <div class="container">
+            <h4>Name</h4>
+            <div><input type="text" name="name"></div>
+            <h4>Photo Link</h4>
+            <div><input type="text" name="image"></div> 
+        </div>
+    </body>  
+
+        <script type="text/javascript">
+        	var questions = [
+        	"I like coming home to a house with people", 
+        	"I tend to eat home-cooked meals", 
+        	"The likeliehood you'll find me aroud the house is . . .", 
+        	"I'm a bit persnickety", 
+        	"I'm a night-owl/vampire/bat(wo)man",
+        	"I love playing music out loud", 
+        	"I'm a believer of 'Live fast, die young'", 
+        	"I like pets", 
+        	"I need a lot of personal space to be happy",
+        	"I'm a pretty sociable individual",
+        	];
+
+            for (var i = 0; i < questions.length; i++) {
+                var s = $("<select>");
+                var qDiv = $("<div>");
+                var n = $("<input>");
+                var con = $("div.container");
+
+                // $("div.container").append("<h3>" + "Question " + (i + 1) + "</h3>");
+                // con.append($("<div>")).html("")
+                 $("div.container").append($("<h3>").html("Question " + (i + 1)));
+               
+                $("div.container").append("<h4>" + questions[i] + "</h4");
+                s.attr("id","q"+(i+1));
+                s.attr("data-placeholder", "");
+                s.addClass("scale");
+                $("div.container").append(s);
+                $("#q"+(i+1)).append($("<option>").attr("value", ""));
+                for (var j = 1; j <= 5; j++) {
+                    if (j === 1) {
+                       $("#q"+(i+1)).append($("<option>").attr("value", j).html(j + " Not me at all!")); 
+                    }
+                    else if (j === 5) {
+                       $("#q"+(i+1)).append($("<option>").attr("value", j).html(j + " Me in a nutshell!")); 
+                    }
+                    else if (j != 1 || 5) {
+                        $("#q"+(i+1)).append($("<option>").attr("value", j).html(j));
+                    }
+                };
+
+            }
+                $("div.container").append(qDiv);
+                qDiv.append(n);
+                n.attr("type", "button");
+                n.attr("name", "submit");
+                n.attr("id", "submit");
+                n.attr("value", "submit");
+
+            $("#submit").on("click", function(event){
+                event.preventDefault();
+                    var selectedAnswers = [];
+                for (var i = 0; i < $(".scale").length; i++) {
+                    if (parseInt($(".select").value) === NaN) { 
+                        alert("message?: DOMString");
+
+                            var SM = new SimpleModal({"btn_ok":"Alert button"});
+                            SM.show({
+                                "title":"Incomplete Form",
+                                "contents":"Make sure you answer every question!" 
+                            }); 
+                        return;
+                    }else {
+
+                        selectedAnswers.push($(".scale")[i].value)
+                    }
+                };
+                    console.log(selectedAnswers);
+                    var new Friend = {
+                        name: 
+                    }
+            });
+        </script>
